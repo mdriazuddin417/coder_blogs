@@ -1,7 +1,16 @@
 import { Button, Typography } from "@material-tailwind/react";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import deleteBlogData from "../../redux/thunk/DeleteBlogData";
+import getBlogsData from "../../redux/thunk/GetBlogsData";
 
 export default function BlogList() {
+  const blogs = useSelector((state) => state.blogs.blogs);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBlogsData());
+  }, [dispatch]);
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto">
@@ -43,29 +52,36 @@ export default function BlogList() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                <tr className="hover:bg-blue-50 duration-300">
-                  <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-                    1
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                    <Typography variant="lead" color="black">
-                      Name
-                    </Typography>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                    <Typography variant="body2">Riaz uddin</Typography>
-                  </td>
-                  <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                    <Button variant="text" color="green" size="sm">
-                      Edit
-                    </Button>
-                  </td>
-                  <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                    <Button variant="text" color="red" size="sm">
-                      Delete
-                    </Button>
-                  </td>
-                </tr>
+                {blogs?.map((blog, index) => (
+                  <tr key={index} className="hover:bg-blue-50 duration-300">
+                    <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
+                      {index + 1}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                      <h3>{blog.title}</h3>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                      <Typography variant="paragraph">{blog.author}</Typography>
+                    </td>
+                    <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                      <Link to={`update-blog/${blog._id}`}>
+                        <Button variant="text" color="green" size="sm">
+                          Edit
+                        </Button>
+                      </Link>
+                    </td>
+                    <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                      <Button
+                        onClick={() => dispatch(deleteBlogData(blog._id))}
+                        variant="text"
+                        color="red"
+                        size="sm"
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

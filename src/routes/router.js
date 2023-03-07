@@ -4,6 +4,7 @@ import Main from "../layout/Main/Main";
 import AddBlog from "../pages/Dashboard/AddBlog";
 import BlogList from "../pages/Dashboard/BlogList";
 import UpdateBlog from "../pages/Dashboard/UpdateBlog";
+import AllBlogs from "../pages/Main/AllBlogs";
 import Contact from "../pages/Main/Contact";
 import History from "../pages/Main/History";
 import Home from "../pages/Main/Home/Home";
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "history",
         element: <History />,
+      },
+      {
+        path: "all-blogs",
+        element: <AllBlogs />,
       },
       {
         path: "wishlist",

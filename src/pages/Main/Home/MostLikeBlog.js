@@ -1,10 +1,9 @@
 import { Typography } from "@material-tailwind/react";
 import React from "react";
 import { useSelector } from "react-redux";
-import SingleBlog from "../../../components/SingleBlog";
 
 const MostLikeBlog = () => {
-  const blogs = useSelector((state) => state.blogs.blogs[0]);
+  const blogs = useSelector((state) => state.blogs.blogs);
   return (
     <div>
       <h1 className="font-thin">YOU MIGHT ALSO LIKE</h1>

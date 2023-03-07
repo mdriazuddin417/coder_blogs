@@ -1,9 +1,9 @@
-import axios from "axios";
+import domain from "../../api/domain";
 import { getBlog } from "../action/blogAction";
 
 const getBlogsData = () => {
   return async (dispatch, getState) => {
-    const res = await axios.get("http://localhost:5000/products");
+    const res = await domain.get("products");
     if (res?.data) {
       dispatch(getBlog(res.data.data));
     }

@@ -9,8 +9,13 @@ import {
   CardHeader,
 } from "@material-tailwind/react";
 import { useState } from "react";
-
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import postBlogsData from "../../redux/thunk/PostBlogData";
 export default function AddBlog() {
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
+
   const [tags, setTags] = useState([]);
   const handleKeyDown = (e) => {
     if (e.key !== "Enter") return;
@@ -23,8 +28,17 @@ export default function AddBlog() {
   const removeTags = (index) => {
     setTags(tags.filter((el, i) => i !== index));
   };
+  const onSubmit = (data) => {
+    const blog = {
+      ...data,
+      date: new Date(),
+      tags,
+    };
+    dispatch(postBlogsData(blog));
+  };
   return (
-    <div
+    <form
+      onSubmit={handleSubmit(onSubmit)}
       className="flex justify-center items-center flex-col h-full
    "
     >
@@ -39,9 +53,21 @@ export default function AddBlog() {
           </Typography>
         </CardHeader>
         <CardBody className="flex flex-col gap-4">
-          <Input label="Blog Title" size="lg" />
+          <Input
+            label="Image URL"
+            size="lg"
+            {...register("image", { required: true })}
+          />
+          <Input
+            label="Blog Title"
+            size="lg"
+            {...register("title", { required: true })}
+          />
 
-          <Textarea label="Blog Details" />
+          <Textarea
+            label="Blog Details"
+            {...register("desc", { required: true })}
+          />
 
           <div className=" w-full border border-gray-400 rounded p-2 flex flex-wrap gap-1">
             {tags.map((tag, index) => (
@@ -65,14 +91,18 @@ export default function AddBlog() {
               placeholder="Tag something.."
             />
           </div>
-          <Input label="Author name" size="lg" />
+          <Input
+            label="Author name"
+            size="lg"
+            {...register("author", { required: true })}
+          />
         </CardBody>
         <CardFooter className="pt-0">
-          <Button variant="gradient" fullWidth size="lg">
+          <Button type="submit" variant="gradient" fullWidth size="lg">
             Submit
           </Button>
         </CardFooter>
       </Card>
-    </div>
+    </form>
   );
 }

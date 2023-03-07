@@ -7,7 +7,7 @@ import getBlogsData from "../../../redux/thunk/GetBlogsData";
 const Blogs = () => {
   const dispatch = useDispatch();
 
-  const blogs = useSelector((state) => state.blogs.blogs[0]);
+  const blogs = useSelector((state) => state.blogs.blogs);
 
   useEffect(() => {
     dispatch(getBlogsData());

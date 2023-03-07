@@ -5,7 +5,7 @@ import SingleBlog from "../../../components/SingleBlog";
 const BestStories = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const blogs = useSelector((state) => state.blogs.blogs[0]);
+  const blogs = useSelector((state) => state.blogs.blogs);
   return (
     <div className="relative">
       <hr />
@@ -71,7 +71,7 @@ const BestStories = () => {
               <div
                 style={{
                   width: 400,
-                  height: 600,
+                  height: 550,
                 }}
                 key={index}
               >

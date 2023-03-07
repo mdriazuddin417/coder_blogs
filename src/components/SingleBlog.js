@@ -11,10 +11,12 @@ import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { addWishList } from "../redux/action/blogAction";
 
 const SingleBlog = ({ item }) => {
-  const [like, setLike] = useState(false);
-  const { author, title, desc, image, tags } = item;
+  const dispatch = useDispatch();
+  const { author, title, desc, image, tags, status, date } = item;
 
   return (
     <Card className="group max-w-sm shadow-none">
@@ -27,9 +29,13 @@ const SingleBlog = ({ item }) => {
       </CardHeader>
       <div className="relative p-5">
         <div className="absolute right-2 top-2">
-          <IconButton variant="text" color="red" onClick={() => setLike(!like)}>
+          <IconButton
+            variant="text"
+            color="red"
+            onClick={() => dispatch(addWishList(item))}
+          >
             <Typography variant="h4" color="blue-gray">
-              {like ? (
+              {status ? (
                 <AiFillHeart className="text-red-500 animate-bounce" />
               ) : (
                 <AiOutlineHeart className="text-gray-500 animate-bounce" />
@@ -38,7 +44,7 @@ const SingleBlog = ({ item }) => {
           </IconButton>
         </div>
         <div className="flex flex-wrap gap-2 w-[95%] pb-2 ">
-          {tags.slice(0, 4).map((tag, index) => (
+          {tags?.slice(0, 4).map((tag, index) => (
             <p
               key={index}
               className="text-gray-900 bg-gray-100 hover:bg-gray-200 duration-300 cursor-pointer border border-gray-200 px-3 py-1 rounded-full shadow-sm text-sm transform hover:-translate-y-1  ease-in-out"
@@ -55,7 +61,7 @@ const SingleBlog = ({ item }) => {
           color="gray"
           className="mt-3 font-normal "
         >
-          {desc.length > 100 ? `${desc.slice(0, 120)}...` : desc}
+          {desc?.length > 100 ? `${desc?.slice(0, 120)}...` : desc}
           <Button variant="text" className="flex items-center gap-2  ">
             Read More
             <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5  " />
@@ -66,7 +72,7 @@ const SingleBlog = ({ item }) => {
         <Typography variant="small">by {author}</Typography>
         <Typography variant="small" color="gray" className="flex gap-1">
           <i className="fas fa-map-marker-alt fa-sm mt-[3px]" />
-          20 january 2023
+          Date: {date.slice(0, 10)}
         </Typography>
       </CardFooter>
     </Card>
