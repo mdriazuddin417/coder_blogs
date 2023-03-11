@@ -4,10 +4,10 @@ import Main from "../layout/Main/Main";
 import AddBlog from "../pages/Dashboard/AddBlog";
 import BlogList from "../pages/Dashboard/BlogList";
 import UpdateBlog from "../pages/Dashboard/UpdateBlog";
-import AllBlogs from "../pages/Main/AllBlogs";
 import Contact from "../pages/Main/Contact";
 import History from "../pages/Main/History";
 import Home from "../pages/Main/Home/Home";
+import SingleBlogDesc from "../pages/Main/SingleBlogDesc";
 
 import WishList from "../pages/Main/WishList";
 
@@ -25,16 +25,16 @@ const router = createBrowserRouter([
         element: <History />,
       },
       {
-        path: "all-blogs",
-        element: <AllBlogs />,
-      },
-      {
         path: "wishlist",
         element: <WishList />,
       },
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "blog/:id",
+        element: <SingleBlogDesc />,
       },
       {
         path: "dashboard",

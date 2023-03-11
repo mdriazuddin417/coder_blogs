@@ -31,7 +31,8 @@ export default function AddBlog() {
   const onSubmit = (data) => {
     const blog = {
       ...data,
-      date: new Date(),
+      date: new Date().toUTCString(),
+      status: false,
       tags,
     };
     dispatch(postBlogsData(blog));

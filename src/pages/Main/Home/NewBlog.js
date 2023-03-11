@@ -9,6 +9,7 @@ import {
   CardHeader,
 } from "@material-tailwind/react";
 import img from "../../../image/tag_3.jpg";
+import Newsletter from "../../../components/Newsletter";
 const NewBlog = () => {
   const tags = ["Web Design", "Javascript", "Node js"];
   return (
@@ -81,24 +82,7 @@ const NewBlog = () => {
         </div>
 
         <div className="lg:col-span-3 md:col-span-5 space-y-3">
-          <div className="bg-light-blue-500 rounded-2xl flex flex-col gap-4 justify-evenly p-4 text-white max-w-sm ">
-            <h1 className="font-thin py-3">NEWSLETTER</h1>
-            <Typography variant="h4" color="white">
-              Get all the latest posts delivered straight to your inbox.
-            </Typography>
-            <input
-              type="text"
-              className="w-full py-2 px-5  rounded-full outline-none text-black text-lg"
-              placeholder="Your email address"
-            />
-            <Button
-              size="lg"
-              variant="outlined"
-              className="w-full rounded-full bg-white"
-            >
-              Subscribe
-            </Button>
-          </div>
+          <Newsletter />
           <div className="">
             <Card className="group max-w-sm shadow-none">
               <CardHeader className="m-0 rounded-2xl">

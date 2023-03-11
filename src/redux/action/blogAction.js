@@ -1,7 +1,10 @@
 import {
   ADD_CONTENT,
+  ADD_WISHLIST,
   DELETE_CONTENT,
+  DELETE_WISHLIST,
   GET_CONTENT,
+  HISTORY_CONTENT,
   UPDATE_CONTENT,
   WISHLIST_CONTENT,
 } from "../actionType/actionType";
@@ -33,6 +36,13 @@ export const deleteBlog = (id) => {
 export const addWishList = (blog) => {
   return {
     type: WISHLIST_CONTENT,
+    payload: blog,
+  };
+};
+
+export const historyBlog = (blog) => {
+  return {
+    type: HISTORY_CONTENT,
     payload: blog,
   };
 };

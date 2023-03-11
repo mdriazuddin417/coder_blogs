@@ -35,21 +35,7 @@ const Header = () => {
           Home
         </NavLink>
       </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <NavLink
-          to="/all-blogs"
-          className={({ isActive }) =>
-            isActive ? "text-light-blue-700 font-semibold" : undefined
-          }
-        >
-          All Blogs
-        </NavLink>
-      </Typography>
+
       <Typography
         as="li"
         variant="small"
