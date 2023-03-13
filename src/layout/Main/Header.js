@@ -6,10 +6,15 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogOut } from "../../redux/action/userAction";
+import logo from "../../image/logo.png";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.addEventListener(
@@ -73,14 +78,31 @@ const Header = () => {
         className="p-1 font-normal"
       >
         <NavLink
-          to="/dashboard"
+          to="/tags"
           className={({ isActive }) =>
             isActive ? "text-light-blue-700 font-semibold" : undefined
           }
         >
-          Dashboard
+          Tags
         </NavLink>
       </Typography>
+      {user && (
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-normal"
+        >
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive ? "text-light-blue-700 font-semibold" : undefined
+            }
+          >
+            Dashboard
+          </NavLink>
+        </Typography>
+      )}
       <Typography
         as="li"
         variant="small"
@@ -100,19 +122,32 @@ const Header = () => {
   );
 
   return (
-    <Navbar className=" py-2 px-4 lg:px-8 lg:py-4">
+    <Navbar className=" py-2 px-4 lg:px-8 lg:py-4 shadow-none">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-        <Typography
-          as="h1"
-          variant="h5"
-          className="mr-4 cursor-pointer py-1.5 font-normal"
-        >
-          <span>Coder Blogs</span>
-        </Typography>
+        <div className="w-[120px] ">
+          <img src={logo} className="w-full lg:scale-[2]" alt="logo" />
+        </div>
         <div className="hidden lg:block">{navList}</div>
-        <Button variant="gradient" size="md" className="hidden lg:inline-block">
-          <span>Login</span>
-        </Button>
+        {!user ? (
+          <Link to={"login"}>
+            <Button
+              variant="gradient"
+              size="md"
+              className="hidden lg:inline-block"
+            >
+              <span>Login</span>
+            </Button>
+          </Link>
+        ) : (
+          <Button
+            variant="gradient"
+            size="md"
+            className="hidden lg:inline-block"
+            onClick={() => dispatch(userLogOut())}
+          >
+            <span>Logout</span>
+          </Button>
+        )}
         <IconButton
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -154,9 +189,26 @@ const Header = () => {
       <MobileNav open={openNav}>
         <div className="container mx-auto">
           {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>Login</span>
-          </Button>
+          {!user ? (
+            <Link to={"login"}>
+              <Button
+                variant="gradient"
+                size="md"
+                className="hidden lg:inline-block"
+              >
+                <span>Login</span>
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              variant="gradient"
+              size="md"
+              className="hidden lg:inline-block"
+              onClick={() => dispatch(userLogOut())}
+            >
+              <span>Logout</span>
+            </Button>
+          )}
         </div>
       </MobileNav>
     </Navbar>

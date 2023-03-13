@@ -1,7 +1,13 @@
-import { CLEAR, FIRST_UPLOAD, LAST_UPLOAD } from "../actionType/actionType";
+import {
+  CLEAR,
+  FIRST_UPLOAD,
+  LAST_UPLOAD,
+  TAG_CONTENT,
+} from "../actionType/actionType";
 
 const initialState = {
   filter: null,
+  tag: null,
 };
 
 const filterReducer = (state = initialState, action) => {
@@ -20,6 +26,11 @@ const filterReducer = (state = initialState, action) => {
       return {
         ...state,
         filter: null,
+      };
+    case TAG_CONTENT:
+      return {
+        ...state,
+        tag: action.payload,
       };
 
     default:

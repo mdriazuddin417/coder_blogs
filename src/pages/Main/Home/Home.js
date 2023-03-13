@@ -8,7 +8,7 @@ import NewBlog from "./NewBlog";
 import PopularTags from "./PopularTags";
 const Home = () => {
   return (
-    <div className="space-y-8 py-10 px-5">
+    <div className="space-y-12 py-10 px-5">
       <Hero />
       <PopularTags />
       <NewBlog />

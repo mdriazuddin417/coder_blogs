@@ -6,7 +6,7 @@ const MostLikeBlog = () => {
   const blogs = useSelector((state) => state.blogs.blogs);
   return (
     <div>
-      <h1 className="font-thin">YOU MIGHT ALSO LIKE</h1>
+      <h1 className="font-thin border-t pt-3">YOU MIGHT ALSO LIKE</h1>
       <div>
         <div className="py-5 flex items-center gap-2 flex-wrap justify-between ">
           {blogs?.slice(0, 4).map((item, index) => (

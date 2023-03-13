@@ -1,4 +1,9 @@
-import { CLEAR, FIRST_UPLOAD, LAST_UPLOAD } from "../actionType/actionType";
+import {
+  CLEAR,
+  FIRST_UPLOAD,
+  LAST_UPLOAD,
+  TAG_CONTENT,
+} from "../actionType/actionType";
 
 export const firstAction = (value) => {
   return {
@@ -15,5 +20,12 @@ export const lastAction = (value) => {
 export const clearAction = () => {
   return {
     type: CLEAR,
+  };
+};
+
+export const addTag = (tag) => {
+  return {
+    type: TAG_CONTENT,
+    payload: tag,
   };
 };

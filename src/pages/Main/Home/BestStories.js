@@ -67,17 +67,19 @@ const BestStories = () => {
             itemsToShow={4}
             speed={500}
           >
-            {blogs?.map((item, index) => (
-              <div
-                style={{
-                  width: 400,
-                  height: 550,
-                }}
-                key={index}
-              >
-                <SingleBlog item={item} />
-              </div>
-            ))}
+            {blogs
+              ?.sort((a, b) => a.position - b.position)
+              .map((item, index) => (
+                <div
+                  style={{
+                    width: 400,
+                    height: 550,
+                  }}
+                  key={index}
+                >
+                  <SingleBlog item={item} />
+                </div>
+              ))}
           </Carousel>
         </div>
       </div>

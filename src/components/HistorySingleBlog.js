@@ -12,7 +12,7 @@ export default function HistorySingleBlog({ item }) {
 
   return (
     <Card>
-      <CardHeader color="blue" className="relative h-56">
+      <CardHeader color="gray" className="relative h-56">
         <img src={image} alt="img-blur-shadow" className="h-full w-full" />
         <div className="absolute top-3 right-3 px-3 py-1 rounded bg-light-blue-500 text-white">
           <Typography variant="small" color="white" className="flex gap-1 ">

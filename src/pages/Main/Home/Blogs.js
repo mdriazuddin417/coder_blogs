@@ -1,6 +1,7 @@
 import { Button } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import NoData from "../../../components/NoData";
 import SingleBlog from "../../../components/SingleBlog";
 import {
   clearAction,
@@ -23,6 +24,7 @@ const Blogs = () => {
 
   if (filter === "last") {
     content = blogs
+      ?.sort((a, b) => a.position - b.position)
       ?.sort((a, b) => {
         const result = new Date(a.date) - new Date(b.date);
         return result;
@@ -31,6 +33,7 @@ const Blogs = () => {
       .map((item, index) => <SingleBlog key={index} item={item} />);
   } else if (filter === "first") {
     content = blogs
+      ?.sort((a, b) => a.position - b.position)
       ?.sort((a, b) => {
         const result = new Date(b.date) - new Date(a.date);
         return result;
@@ -39,6 +42,7 @@ const Blogs = () => {
       .map((item, index) => <SingleBlog key={index} item={item} />);
   } else {
     content = blogs
+      ?.sort((a, b) => a.position - b.position)
       ?.slice(0, count)
       .map((item, index) => <SingleBlog key={index} item={item} />);
   }
@@ -77,7 +81,7 @@ const Blogs = () => {
         </div>
       </div>
       <div className="py-10 grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5">
-        {content}
+        {content ? content : <NoData title={"Loading..."} />}
       </div>
       <div className="text-center">
         <Button

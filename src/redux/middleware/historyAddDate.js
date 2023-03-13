@@ -5,7 +5,7 @@ const historyAddDate = (store) => (next) => (action) => {
   if (action.type === HISTORY_CONTENT) {
     const newAction = {
       ...action,
-      payload: { ...action.payload, watchDate: `${currentDate}` },
+      payload: { ...action.payload, watchDate: currentDate },
     };
     return next(newAction);
   }

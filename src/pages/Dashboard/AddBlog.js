@@ -10,12 +10,12 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import postBlogsData from "../../redux/thunk/PostBlogData";
 export default function AddBlog() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
-
+  const blogs = useSelector((state) => state.blogs.blogs);
   const [tags, setTags] = useState([]);
   const handleKeyDown = (e) => {
     if (e.key !== "Enter") return;
@@ -33,6 +33,7 @@ export default function AddBlog() {
       ...data,
       date: new Date().toUTCString(),
       status: false,
+      position: blogs.length + 1,
       tags,
     };
     dispatch(postBlogsData(blog));

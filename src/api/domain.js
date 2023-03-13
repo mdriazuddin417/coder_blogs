@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const domain = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://coder-blog.up.railway.app/",
 });
 
 export default domain;

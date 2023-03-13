@@ -18,7 +18,7 @@ const blogReducer = (state = initialState, action) => {
   const selectedBlog = state.history.find(
     (blog) => blog._id === action.payload._id,
   );
-  const selectedWishList = state.blogs.find(
+  const selectedWishList = state?.blogs.find(
     (blog) => blog._id === action.payload._id,
   );
   switch (action.type) {
